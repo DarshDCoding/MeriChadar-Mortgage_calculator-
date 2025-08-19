@@ -19,10 +19,9 @@ const addCheck = (event) =>
 const removeCheck = (event) =>
   event.target.parentNode.classList.remove("active-input");
 
-  const resultTab = document.querySelector(".result");
-  const rightEmptySection = document.querySelector(".right-empty-section");
-  const rightResultSection = document.querySelector(".right-result-section")
-
+const resultTab = document.querySelector(".result");
+const rightEmptySection = document.querySelector(".right-empty-section");
+const rightResultSection = document.querySelector(".right-result-section");
 
 const elementArray = [baseAmountInput, termInput, rateInput];
 const checkpointArray = [repaymentType, interestType];
@@ -65,12 +64,14 @@ clearAll.addEventListener("click", () => {
   document
     .querySelectorAll(".alert")
     .forEach((alert) => alert.classList.add("dissapear"));
-    
-    //switching right tab to empty
-    resultTab.classList.remove("justify-start")
-    rightEmptySection.classList.remove("dissapear")
-    rightResultSection.classList.add("dissapear")  
-  });
+
+  //switching right tab to empty
+  resultTab.classList.remove("justify-start");
+  rightEmptySection.classList.remove("dissapear");
+  rightResultSection.classList.add("dissapear");
+});
+
+let foundError = false;
 
 for (const element of elementArray) {
   element.addEventListener("keyup", (event) => {
@@ -81,8 +82,6 @@ for (const element of elementArray) {
     if (isNumberic(String(element.value)) || element.value.length == 0) {
       alertElement.innerText = "This field is required";
       alertElement.classList.add("dissapear");
-      parentElemnt.classList.remove("error-input");
-      // element.value = parseFloat(element.value).toLocaleString()
     } else {
       alertElement.innerText = alertMessage;
       alertElement.classList.remove("dissapear");
@@ -93,30 +92,19 @@ for (const element of elementArray) {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  console.log("entered flag.1");
-
   let errorHandled = false;
-  console.log("processing flag.2");
 
   if (!errorHandled) {
-    console.log("handeling error flag.3");
-
-    let foundError = false;
-
     //handeling errors...
     elementArray.forEach((event) => {
-      console.log("checking input fields flag.4");
-
       const parentElement = event.parentNode;
       const errorElement = parentElement.parentNode.lastChild.previousSibling;
 
       if (event.value.length <= 0) {
-        console.log("input field error found flag.5");
         parentElement.classList.add("error-input");
         errorElement.classList.remove("dissapear");
         foundError = true;
       } else {
-        console.log("no input filed error flag.6 ");
         event.parentNode.classList.remove("error-input");
         errorElement.classList.add("dissapear");
       }
@@ -128,31 +116,30 @@ form.addEventListener("submit", (event) => {
       const val = document.querySelector(
         'input[name="mortagetype"]:checked'
       ).value;
-      console.log("no checkbox error flag.7");
       radioAlert.classList.add("dissapear");
     } catch (e) {
-      console.log("checkbox error found flag.8 ");
       radioAlert.classList.remove("dissapear");
       console.log("stopping further process as error is found...");
       return;
     }
-    console.log("all test completed");
-
     if (foundError) {
       console.log("Stopping further process as error is found...");
       return;
     }
 
     // switching right tab to result
-    resultTab.classList.add("justify-start")
-    rightEmptySection.classList.add("dissapear")
-    rightResultSection.classList.remove("dissapear")
+    resultTab.classList.add("justify-start");
+    rightEmptySection.classList.add("dissapear");
+    rightResultSection.classList.remove("dissapear");
+
+    rightResultSection.scrollIntoView({
+      behavior:"smooth", block:"start"
+    })
   }
 
-  const resultValueMessage = document.getElementById("result-value-message")
-  const actualAmount = document.getElementById("actual-amount")
-  const totalAmount = document.getElementById("total-amount")
-
+  const resultValueMessage = document.getElementById("result-value-message");
+  const actualAmount = document.getElementById("actual-amount");
+  const totalAmount = document.getElementById("total-amount");
 
   const amount = Number(baseAmountInput.value);
   const term = Number(termInput.value);
@@ -160,13 +147,27 @@ form.addEventListener("submit", (event) => {
   const type = document.querySelector(
     'input[name="mortagetype"]:checked'
   ).value;
-  let result = mortgagePayments(amount, term, rate)
-  console.log(result)
+  let result = mortgagePayments(amount, term, rate);
 
-  if (type == "repayment"){
-    actualAmount.innerText = `£${parseFloat((result.repayment).toFixed(2)).toLocaleString()}`
-  }else if (type == "intrest-only"){
-    actualAmount.innerText = `£${parseFloat((result.intrestOnly).toFixed(2)).toLocaleString()}`
+  const toStrings = String(result.repayment)
+  const toStrings2 = String(result.intrestOnly) //it's 12:31AM and i just want to get over with this so don't expect any meaningful names right now.
+
+  if (toStrings == "NaN" || toStrings2 == "NaN") {
+    actualAmount.innerText = "Enter Valid Numbers";
+    totalAmount.innerText = "-";
+  } else if (type == "repayment") {
+    actualAmount.innerText = `£${parseFloat(
+      result.repayment.toFixed(2)
+    ).toLocaleString()}`;
+      totalAmount.innerText = `£${parseFloat(
+    result.repayOverTerm.toFixed(2)
+  ).toLocaleString()}`;
+  } else if (type == "intrest-only") {
+    actualAmount.innerText = `£${parseFloat(
+      result.intrestOnly.toFixed(2)
+    ).toLocaleString()}`;
+      totalAmount.innerText = `£${parseFloat(
+    result.repayOverTerm.toFixed(2)
+  ).toLocaleString()}`;
   }
-  totalAmount.innerText = `£${parseFloat((result.repayOverTerm).toFixed(2)).toLocaleString()}` 
 });
