@@ -1,0 +1,344 @@
+@font-face{
+    font-family:PlusJakartaSans;
+    src: url(../../assets/fonts/static/PlusJakartaSans-Medium.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-jakarta);
+}
+
+:root{
+    --primary-lime:hsl(61,70%,52%);
+    --primary-red:hsl(4,69%,50%);
+
+    --neutral-white:hsl(0,0%,100%);
+    --neutral-slate-100:hsl(202,86%,94%);
+    --neutral-slate-300:hsl(203,41%,72%);
+    --neutral-slate-500:hsl(200,26%,54%);
+    --neutral-slate-700: hsl(200, 24%, 40%);
+    --neutral-slate-900: hsl(202, 55%, 16%);
+
+    --secondary-lime:hsla(61, 70%, 52%, 0.116);
+    --secondary-slate:hsl(201, 56%, 12%);
+
+    --margin:1rem;
+    --font-bold:700;
+
+    --font-jakarta:"PlusJakartaSans";
+}
+
+body{
+    background-color: var(--neutral-slate-100);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.fullcard{
+    width: fit-content;
+    background-color: var(--neutral-white);
+    display: flex;
+    flex-direction: row;
+    border-radius: 0.8rem;
+    overflow: hidden;
+}
+
+.result{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 450px;
+    background-color: var(--neutral-slate-900);
+    border-bottom-left-radius: 4rem;
+}
+
+.label{
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--neutral-slate-700);
+}
+
+.right-empty-section{
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-inline:20px;
+}
+
+.right-empty-section img{
+    height: 150px;
+}
+
+
+#empty-section-header{
+    color: var(--neutral-white);
+    font-size: 1.5rem;
+    text-align: center;
+}
+#empty-section-desc{
+    color: var(--neutral-slate-500);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.details{
+    width: 450px;
+    background-color:var(--neutral-white);
+}
+
+.left-heading-section{
+    display: flex;
+    justify-content:space-between;
+    padding-inline:1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+}
+.clearAll-btn{
+    background: none;
+    border: none;
+    text-decoration: underline;
+    font-size: 0.8rem;
+    align-self: center;
+    color: var(--neutral-slate-500);
+    cursor: pointer;
+}
+
+.left-heading-section h1{
+    color:var(--neutral-slate-900);
+    font-size: 1.5rem;
+
+}
+
+.base-amount-input-field{
+    height: 2.5rem;
+    display: flex;
+    border: 1px solid var(--neutral-slate-500);
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--neutral-slate-100);
+    font-weight: 500;
+    color: var(--neutral-slate-900);
+}
+
+/* .base-amount-input-field:hover{
+    border-color: var(--primary-lime);
+    background-color: var(--primary-lime);
+} */
+.container{
+    margin-inline: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.base-amount-input{
+    border: none;
+    width: 100%;
+    padding-left: 1rem;
+    cursor: pointer;
+    font-weight: var(--font-bold);
+}
+.base-amount-input:focus{
+    outline: none;
+}
+.input-decoration{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    background-color: inherit;
+}
+
+.parameters{
+    display: flex;
+    flex-direction: row;
+    /* gap:1rem; */
+    justify-content: space-between;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.parameters .input-decoration{
+    width: max-content;
+    padding-inline: 0.5rem;
+    border-right: none;
+}
+.parameters .base-amount-input-field {
+    flex-direction: row-reverse;
+}
+
+.type{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-inline: 1rem;
+    gap: 1rem;
+}
+
+.radio-container{
+    height: fit-content;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--neutral-slate-500);
+}
+
+.active-input{
+    border:1px solid var(--primary-lime);
+    background-color: var(--primary-lime);
+}
+
+.error-input{
+    border: 1px solid var(--primary-red);
+    background-color: var(--primary-red);
+    color: var(--neutral-white);
+}
+
+.active-check{
+    border:1px solid var(--primary-lime);
+    background-color: var(--secondary-lime);
+}
+
+.radio-div{
+    padding: 0.8rem;
+    border-radius: 4px;
+}
+
+.radio_input{
+    appearance: none;
+    outline: 1px solid var(--neutral-slate-700);
+    outline-offset: 3px;
+    height: 1em;
+    width: 1em;
+    border-radius: 15px;
+
+}
+.radio_input:checked{
+    outline-color: var(--primary-lime);
+    background-color: var(--primary-lime);
+    border-color: var(--primary-lime);
+}
+.radio-label{
+    margin-left: 0.8rem;
+    color: var(--neutral-slate-900);
+}
+
+.submit-btn button{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 1.8rem;
+    margin-left: 1rem;
+    margin-bottom:2rem;
+    background-color: var(--primary-lime);
+    border: none;
+    border-radius: 1.5rem;
+    cursor: pointer;
+
+    transition: all 0.15s;
+}
+
+.submit-btn button:hover{
+    opacity: 0.8;
+}
+
+.submit-btn button:active{
+    scale: 0.97;
+}
+
+.submit-btn p{
+    font-weight: var(--font-bold);
+}
+
+.alert{
+    font-size: 0.8rem;
+    color: var(--primary-red);
+    font-weight: var(--font-bold);
+}
+
+/* Result Tab */
+
+.right-result-section{
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--neutral-white);
+}
+
+.result-instruction{
+    font-size: 0.9rem;
+    color: var(--neutral-slate-300);
+}
+
+.result-value{
+    border-radius: 8px;
+    background-color: var(--secondary-slate);
+    box-shadow: 0px -3px 0px var(--primary-lime);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.main-result{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.result-heading{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.result-value-message{
+    font-size: 0.9rem;
+    color:var(--neutral-slate-300);
+}
+
+#actual-amount{
+    font-size: 2.5rem;
+    font-weight: var(--font-bold);
+    color: var(--primary-lime);
+}
+
+.seperation-bar{
+    width: 100%;
+    height: 1px;
+    background-color: var(--neutral-slate-700);
+}
+
+.total-value{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+#total-amount{
+    font-size: 1.2rem;
+    font-weight: var(--font-bold);
+}
+
+.dissapear {
+    display: none;
+}
+.justify-start{
+    justify-content: flex-start;
+}
