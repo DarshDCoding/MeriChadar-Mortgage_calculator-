@@ -71,7 +71,6 @@ clearAll.addEventListener("click", () => {
   rightResultSection.classList.add("dissapear");
 });
 
-let foundError = false;
 
 for (const element of elementArray) {
   element.addEventListener("keyup", (event) => {
@@ -93,7 +92,7 @@ for (const element of elementArray) {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   let errorHandled = false;
-
+  let foundError = false;
   if (!errorHandled) {
     //handeling errors...
     elementArray.forEach((event) => {
