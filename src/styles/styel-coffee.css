@@ -1,0 +1,51 @@
+  .coffee-jump {
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background: #FFDD00; /* warm coffee-like orange */
+    color: #2c1810; /* dark coffee brown */
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: jump 2s infinite;
+    font-family: "Story Script", cursive;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+  }
+    .coffee-jump:hover {
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+  /* Jump & vibrate */
+  @keyframes jump {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    20% {
+      transform: translateY(-12px);
+    }
+    25% {
+      transform: translateY(-12px) rotate(-2deg);
+    }
+    30% {
+      transform: translateY(-12px) rotate(2deg);
+    }
+    35% {
+      transform: translateY(-12px) rotate(-1deg);
+    }
+    40% {
+      transform: translateY(-12px) rotate(1deg);
+    }
+    45% {
+      transform: translateY(-12px);
+    }
+    60% {
+      transform: translateY(0);
+    }
+  }
